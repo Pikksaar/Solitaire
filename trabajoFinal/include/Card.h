@@ -9,16 +9,14 @@ class Card{
         std::string getSuit();
         std::string getFace();
         bool getRevealed();
-        bool getOnboard();
 
         //void setSprite(const std::string &filename);
 
-        void setSuit(std::string);
-        void setFace(std::string);
-        void setRevealed(bool);
-        void setOnboard(bool);
+        void setSuit(const std::string);
+        void setFace(const std::string);
+        void revealCard();
 
-        std::string print();
+        std::string printCard();
 
     protected:
 

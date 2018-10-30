@@ -6,8 +6,10 @@
 class Deck{
     public:
         Deck();
+
+        Card& dealCard();
+
         void shuffleDeck();
-        Card getNextCard();
         void printDeck();
 
     private:

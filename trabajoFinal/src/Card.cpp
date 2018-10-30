@@ -1,9 +1,10 @@
 #include "Card.h"
 #include <iostream>
+#include <iomanip>
 #include <string.h>
 
 Card::Card(){
-    revealed = false;
+    revealed = true;
     onboard = false;
 }
 
@@ -19,15 +20,11 @@ bool Card::getRevealed(){
     return revealed;
 }
 
-bool Card::getOnboard(){
-    return onboard;
-}
-
-void Card::setFace(std::string n){
+void Card::setFace(const std::string n){
     face = n;
 }
 
-void Card::setSuit(std::string s){
+void Card::setSuit(const std::string s){
     suit = s;
 }
 /*
@@ -36,14 +33,13 @@ void Card::setSprite(const std::string &filename){
     sf::Sprite cSprite(cTexture);
 }
 */
-void Card::setRevealed(bool x){
-    revealed = x;
+void Card::revealCard(){
+    revealed = true;
 }
 
-void Card::setOnboard(bool x){
-    onboard = x;
-}
 
-std::string Card::print(){
-    return face + " de " + suit;
+std::string Card::printCard(){
+    if (revealed)
+        return face + " of " + suit;
+    return "?????";
 }

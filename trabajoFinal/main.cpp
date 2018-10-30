@@ -1,79 +1,75 @@
 #include <iostream>
-#include "Card.h"
-#include "Deck.h"
+#include <iomanip>
+
 #include <string.h>
 #include <ctime>
 #include <vector>
+
+#include "Card.h"
+#include "Deck.h"
+#include "Pile.h"
+#include "Game.h"
+
+#define FOUNDATIONS 7
 //#include <SFML/Graphics.hpp>
 //#include <SFML/Window.hpp>
 
 //using namespace sf;
 using namespace std;
 
-Deck deck;
-
-//vector<Card> playingBoard[7];
-/*
-Card cardsLeft[24];
-Card heartsPile[13];
-Card spadesPile[13];
-Card clubsPile[13];
-Card diamondsPile[13];
-*/
-//Sprite figures[52]; // images
 
 //string filename(string, int);
 /*
-void revealCard(Card c){
-    if(!c.getRevealed())
-        c.setRevealed(true);
-}
-
-void moveCard(vector<Card> vec[], int i, int j, int ni, int nj){
-    vec[ni-1].push_back(vec[i-1][j-1]);
-    vec[i-1].pop_back();
-}
-
-void printBoard(vector<Card> vec[]){
-    for (int i = 0; i < 7; i++){
-        for (int j = 0; j < vec[i].size(); j++){
-            if (vec[i][j].getRevealed())
-                cout << vec[i][j].getCard() << " ";
-            else
-                cout << "????? ";
-        }
-        cout << endl;
-    }
-}
-
 string filename(string s, int n){
     string a = "images/cards/" + s + "/" + to_string(n) + ".png";
     return a;
 }
 */
-void createCards();
-void chooseCards();
+Game game;
+Deck deck;
+
+Pile foundations[4];
+Pile tableaus[7];
+
+void moveCards(Pile&, Pile&, int);
 
 int main(){
-    bool gameFinished = false;
 
-    //createCards();
-    //chooseCards();
-
-    cout << "Ya estoy corriendo" << endl;
-    cout << endl;
-
-    deck.printDeck();
-
-    cout << endl;
     deck.shuffleDeck();
-    deck.printDeck();
-    cout << endl;
-    deck.shuffleDeck();
-    deck.printDeck();
-    cout << endl;
-    deck.shuffleDeck();
-    deck.printDeck();
+
+    for (int i = 0; i < FOUNDATIONS; i++){
+        for (int j = 0; j < i+1; j++){
+            tableaus[i].addCard(&(deck.dealCard()));
+        }
+    }
+
+    for (Pile tableau : tableaus){
+        tableau.revealLast();
+    }
+
+    while (true){/*
+        for (int i = 0; i < 13; i++){
+            for (int j = 0; j < FOUNDATIONS; j++){
+                if (tableaus[j].getSize() == 0){
+                    cout << setw(19) << " ";
+                }
+                else if (tableaus[j].getSize() <= i){
+                    cout << setw(19) << " ";
+                }
+                else{
+                    cout << setw(19) << tableaus[j].getCard(i).printCard();
+                }
+            }
+            cout << endl;
+        }*/
+
+        game.drawBoard(tableaus);
+
+        int choosePile, toPile, quant;
+        cin >> choosePile >> toPile >> quant;
+
+        moveCards(tableaus[choosePile-1], tableaus[toPile-1], quant);
+    }
 
 /*    while(!gameFinished){
         printBoard(playingBoard);
@@ -83,9 +79,6 @@ int main(){
         revealCard(playingBoard[i-1][j-2]);
     }
 
-
-
-/*
     RenderWindow window(VideoMode(678, 848), "Solitaire!");
 
     Texture t1;
@@ -120,7 +113,6 @@ int main(){
             if (e.type == Event::MouseButtonReleased)
                 if (e.key.code == Mouse::Left)
                     isMove = false;
-
         }
 
         if (isMove) s.setPosition(pos.x-dx, pos.y-dy);
@@ -133,35 +125,13 @@ int main(){
 */
     return 0;
 }
-/*
-void chooseCards(){
-    srand(time(NULL));
-    int row = 0; int column = 1;
-    int randomNumber;
 
-    while (column < 7){
-        randomNumber = (rand() % 52);
-        if (deck[randomNumber].getOnboard() == false){
-            deck[randomNumber].setOnboard(true);
-            playingBoard[column].push_back(deck[randomNumber]);
-            row++;
-        }
-        if (row == column){
-            column++;
-            row = 0;
-        }
+void moveCards(Pile &dealer, Pile &receiver, int cards){
+    int j = cards;
+    for (int i = 0; i < cards; i++){
+        receiver.addCard(&(dealer.getCard(dealer.getSize()-cards)));
+        //if (dealer.getSize() > 0)
+        dealer.removeCard(cards);
     }
-
-    row = 0;
-
-    while (row < 7){
-        randomNumber = (rand() % 52);
-        if (deck[randomNumber].getOnboard() == false){
-            deck[randomNumber].setOnboard(true);
-            deck[randomNumber].setRevealed(true);
-            playingBoard[row].push_back(deck[randomNumber]);
-            row++;
-        }
-    }
+    dealer.revealLast();
 }
-*/

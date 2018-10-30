@@ -1,29 +1,32 @@
 # depslib dependency file v1.0
-1540441074 source:c:\users\asus\documents\basic programming\trabajofinal\src\card.cpp
+1540866342 source:c:\users\asus\documents\basic programming\trabajofinal\src\card.cpp
 	"Card.h"
 	<iostream>
+	<iomanip>
 	<string.h>
 
-1540440312 c:\users\asus\documents\basic programming\trabajofinal\include\card.h
+1540589454 c:\users\asus\documents\basic programming\trabajofinal\include\card.h
 	<iostream>
 
-1540441304 source:c:\users\asus\documents\basic programming\trabajofinal\main.cpp
+1540868395 source:c:\users\asus\documents\basic programming\trabajofinal\main.cpp
 	<iostream>
-	"Card.h"
-	"Deck.h"
+	<iomanip>
 	<string.h>
 	<ctime>
 	<vector>
-
-1540441214 source:c:\users\asus\documents\basic programming\trabajofinal\src\deck.cpp
-	"Deck.h"
 	"Card.h"
+	"Deck.h"
+	"Pile.h"
+	"Game.h"
+
+1540681449 source:c:\users\asus\documents\basic programming\trabajofinal\src\deck.cpp
+	"Deck.h"
 	<vector>
 	<ctime>
 	<iostream>
 	<iomanip>
 
-1540441672 c:\users\asus\documents\basic programming\trabajofinal\include\deck.h
+1540587697 c:\users\asus\documents\basic programming\trabajofinal\include\deck.h
 	"Card.h"
 	<iostream>
 
@@ -845,13 +848,20 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1540435768 source:c:\users\asus\documents\basic programming\trabajofinal\src\game.cpp
+1540867376 source:c:\users\asus\documents\basic programming\trabajofinal\src\game.cpp
 	"Game.h"
+	"Pile.h"
+	<iostream>
+	<iomanip>
 
-1540435768 c:\users\asus\documents\basic programming\trabajofinal\include\game.h
-
-1540437372 source:c:\users\asus\documents\basic programming\trabajofinal\src\pile.cpp
+1540867314 c:\users\asus\documents\basic programming\trabajofinal\include\game.h
 	"Pile.h"
 
-1540437372 c:\users\asus\documents\basic programming\trabajofinal\include\pile.h
+1540868023 source:c:\users\asus\documents\basic programming\trabajofinal\src\pile.cpp
+	"Pile.h"
+	<iomanip>
+
+1540865767 c:\users\asus\documents\basic programming\trabajofinal\include\pile.h
+	"Card.h"
+	<vector>
 
