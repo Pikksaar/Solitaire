@@ -10,7 +10,7 @@
 #include "Pile.h"
 #include "Game.h"
 
-#define FOUNDATIONS 7
+#define TABLEAUS 7
 //#include <SFML/Graphics.hpp>
 //#include <SFML/Window.hpp>
 
@@ -31,15 +31,19 @@ Deck deck;
 Pile foundations[4];
 Pile tableaus[7];
 
+void moveCards(Pile&);
+void moveCards(Pile&, Pile&);
 void moveCards(Pile&, Pile&, int);
+
 
 int main(){
 
     deck.shuffleDeck();
 
-    for (int i = 0; i < FOUNDATIONS; i++){
+    for (int i = 0; i < TABLEAUS; i++){
         for (int j = 0; j < i+1; j++){
             tableaus[i].addCard(&(deck.dealCard()));
+            tableaus[i].getCard(j).setRevealed(false);
         }
     }
 
@@ -47,28 +51,47 @@ int main(){
         tableau.revealLast();
     }
 
-    while (true){/*
-        for (int i = 0; i < 13; i++){
-            for (int j = 0; j < FOUNDATIONS; j++){
-                if (tableaus[j].getSize() == 0){
-                    cout << setw(19) << " ";
-                }
-                else if (tableaus[j].getSize() <= i){
-                    cout << setw(19) << " ";
-                }
-                else{
-                    cout << setw(19) << tableaus[j].getCard(i).printCard();
-                }
-            }
-            cout << endl;
-        }*/
+    int choice;
 
-        game.drawBoard(tableaus);
+    while (!game.gameWon(foundations[0], foundations[1], foundations[2], foundations[3])){
+        game.drawBoard(deck, tableaus, foundations);
 
-        int choosePile, toPile, quant;
-        cin >> choosePile >> toPile >> quant;
+        game.askAction();
+        cin >> choice;
 
-        moveCards(tableaus[choosePile-1], tableaus[toPile-1], quant);
+        int fromPile, toPile, cards;
+        switch(choice){
+            case 1:
+                deck.getNextCard();
+                break;
+            case 2:
+                cin >> toPile;
+                moveCards(tableaus[toPile-1]);
+                deck.getPreviousCard();
+                break;
+            case 3:
+                cin >> toPile;
+                moveCards(foundations[toPile-1]);
+                deck.getPreviousCard();
+                break;
+            case 4:
+                cin >> fromPile >> toPile >> cards;
+                moveCards(tableaus[fromPile-1], tableaus[toPile-1], cards);
+                break;
+            case 5:
+                cin >> fromPile >> toPile;
+                moveCards(tableaus[fromPile-1], foundations[toPile-1]);
+                break;
+            default:
+                cout << "Choose one of the given options!" << endl;
+                break;
+        }
+
+        cout << "\n\n";
+        //int choosePile, toPile, quant;
+        //cin >> choosePile >> toPile >> quant;
+
+        //moveCards(tableaus[choosePile-1], foundations[toPile-1], quant);
     }
 
 /*    while(!gameFinished){
@@ -127,11 +150,67 @@ int main(){
 }
 
 void moveCards(Pile &dealer, Pile &receiver, int cards){
-    int j = cards;
-    for (int i = 0; i < cards; i++){
-        receiver.addCard(&(dealer.getCard(dealer.getSize()-cards)));
-        //if (dealer.getSize() > 0)
-        dealer.removeCard(cards);
+    Card *cardToMove = &dealer.getCard(dealer.getSize()-cards);
+    Card *topCard;
+
+    if (receiver.getSize() > 0){
+        topCard = &receiver.getLastCard();
+
+        if ((cardToMove->getNumber() != (topCard->getNumber() - 1)) || ((cardToMove->getColour() == topCard->getColour()))){
+            cout << "That's not a legal move!" << endl;
+            return;
+        }
     }
-    dealer.revealLast();
+
+    int j = cards;
+    for (int i = 0; i < j; i++){
+        receiver.addCard(cardToMove);
+        dealer.removeCard(cards);
+        cards--;
+    }
+    if (dealer.getSize() > 0)
+        dealer.revealLast();
+}
+
+void moveCards(Pile &dealer, Pile &receiver){
+    Card *cardToMove = &dealer.getCard(dealer.getSize()-1);
+    Card *topCard;
+
+    if (receiver.getSize() > 0){
+        topCard = &receiver.getLastCard();
+
+        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || ((cardToMove->getColour() != topCard->getColour()))){
+            cout << "That's not a legal move!" << endl;
+            return;
+        }
+    }
+
+    receiver.addCard(cardToMove);
+    dealer.removeCard(dealer.getSize());
+
+    if (dealer.getSize() > 0)
+        dealer.revealLast();
+}
+
+void moveCards(Pile &receiver){
+    Card *cardToMove = &deck.getCurrentCard();
+    Card *topCard;
+
+    if (receiver.getSize() == 0){
+        if (cardToMove->getNumber() != 1){
+            cout << "That's not a legal move!" << endl;
+            return;
+        }
+    }
+
+    if (receiver.getSize() > 0){
+        topCard = &receiver.getLastCard();
+
+        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || ((cardToMove->getColour() != topCard->getColour()))){
+            cout << "That's not a legal move!" << endl;
+            return;
+        }
+    }
+
+    receiver.addCard(&(deck.dealCard()));
 }

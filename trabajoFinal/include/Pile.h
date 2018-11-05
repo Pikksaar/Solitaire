@@ -15,6 +15,7 @@ class Pile
 
         int getSize();
         Card& getCard(int);
+        Card& getLastCard();
 
         void printPile();
 
