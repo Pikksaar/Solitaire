@@ -19,9 +19,9 @@ Deck::Deck(){
 
     for(int cont = 0; cont < CARDS_IN_DECK; cont++){ // Populate deck
         deck[cont].setFace(faces[cont % 13]);
+        deck[cont].setNumber(numbers[cont % 13]);
         deck[cont].setSuit(suits[cont / 13]);
         deck[cont].setColour(colours[cont / 26]);
-        deck[cont].setNumber(numbers[cont % 13]);
     }
 }
 
@@ -62,24 +62,16 @@ Card& Deck::getCurrentCard(){
 }
 
 std::string Deck::getNextCard(){
-
     if (notDealt == 52){
-        int cont = 0;
-        while (deck[cont].getOnboard() == true)
-            cont++;
-        notDealt = cont;
-
-        if (notDealt == 51) return deck[notDealt].printCard();
-        return deck[notDealt++].printCard();
+        notDealt = 28;
+        return " ";
+    }
+    else{
+        while (deck[notDealt].getOnboard() == true && notDealt < 52)
+            notDealt++;
     }
 
-    while (deck[notDealt].getOnboard() == true && notDealt < 53){
-        notDealt++;
-    }
-
-    if (notDealt == 52) return "";
-    if (notDealt == 51) return deck[notDealt].printCard();
-
+    if (notDealt == 52) {notDealt = 28; return " ";}
     return deck[notDealt++].printCard();
 }
 

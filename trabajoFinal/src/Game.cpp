@@ -10,7 +10,7 @@ Game::Game(){
 }
 
 void Game::drawBoard(Deck deck, Pile tableaus[], Pile foundations[]){
-    std::cout << std::setw(19) << deck.getNextCard() << "\n\n";
+    std::cout << std::setw(19) << "Deck: " << std::setw(19) << deck.getNextCard() << "\n\n";
 
     for (int i = 0; i < 13; i++){
         for (int j = 0; j < TABLEAUS; j++){

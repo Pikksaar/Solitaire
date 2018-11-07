@@ -35,6 +35,9 @@ void moveCards(Pile&);
 void moveCards(Pile&, Pile&);
 void moveCards(Pile&, Pile&, int);
 
+void fromDeckToFoundation(Pile&);
+void fromDeckToTableau(Pile&);
+
 
 int main(){
 
@@ -66,20 +69,30 @@ int main(){
                 break;
             case 2:
                 cin >> toPile;
-                moveCards(tableaus[toPile-1]);
-                deck.getPreviousCard();
+                fromDeckToTableau(tableaus[toPile-1]);
                 break;
             case 3:
                 cin >> toPile;
-                moveCards(foundations[toPile-1]);
-                deck.getPreviousCard();
+                fromDeckToFoundation(foundations[toPile-1]);
                 break;
             case 4:
                 cin >> fromPile >> toPile >> cards;
+
+                if (cards > tableaus[fromPile-1].getSize()){
+                    cout << "That's not a legal move!" << endl;
+                    break;
+                }
+
                 moveCards(tableaus[fromPile-1], tableaus[toPile-1], cards);
                 break;
             case 5:
                 cin >> fromPile >> toPile;
+
+                if (tableaus[fromPile-1].getSize() == 0){
+                    cout << "That's not a legal move!" << endl;
+                    break;
+                }
+
                 moveCards(tableaus[fromPile-1], foundations[toPile-1]);
                 break;
             default:
@@ -149,15 +162,24 @@ int main(){
     return 0;
 }
 
+string warning = "That's not a legal move!";
+
 void moveCards(Pile &dealer, Pile &receiver, int cards){
     Card *cardToMove = &dealer.getCard(dealer.getSize()-cards);
     Card *topCard;
 
-    if (receiver.getSize() > 0){
+    if (receiver.getSize() == 0){
+        if (cardToMove->getNumber() != 13){
+            cout << warning << endl;
+            return;
+        }
+    }
+
+    else{
         topCard = &receiver.getLastCard();
 
         if ((cardToMove->getNumber() != (topCard->getNumber() - 1)) || ((cardToMove->getColour() == topCard->getColour()))){
-            cout << "That's not a legal move!" << endl;
+            cout << warning << endl;
             return;
         }
     }
@@ -167,6 +189,7 @@ void moveCards(Pile &dealer, Pile &receiver, int cards){
         receiver.addCard(cardToMove);
         dealer.removeCard(cards);
         cards--;
+        cardToMove = &dealer.getCard(dealer.getSize()-cards);
     }
     if (dealer.getSize() > 0)
         dealer.revealLast();
@@ -176,41 +199,72 @@ void moveCards(Pile &dealer, Pile &receiver){
     Card *cardToMove = &dealer.getCard(dealer.getSize()-1);
     Card *topCard;
 
+    if (receiver.getSize() == 0){
+        if (cardToMove->getNumber() != 1){
+            cout << warning << endl;
+            return;
+        }
+    }
+
     if (receiver.getSize() > 0){
         topCard = &receiver.getLastCard();
 
         if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || ((cardToMove->getColour() != topCard->getColour()))){
-            cout << "That's not a legal move!" << endl;
+            cout << warning << endl;
             return;
         }
     }
 
     receiver.addCard(cardToMove);
-    dealer.removeCard(dealer.getSize());
+    dealer.removeCard(1);
 
     if (dealer.getSize() > 0)
         dealer.revealLast();
 }
 
-void moveCards(Pile &receiver){
+void fromDeckToTableau(Pile &receiver){
     Card *cardToMove = &deck.getCurrentCard();
     Card *topCard;
 
     if (receiver.getSize() == 0){
-        if (cardToMove->getNumber() != 1){
-            cout << "That's not a legal move!" << endl;
+        if (cardToMove->getNumber() != 13){
+            cout << warning << endl;
             return;
         }
     }
-
-    if (receiver.getSize() > 0){
+    else{
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || ((cardToMove->getColour() != topCard->getColour()))){
-            cout << "That's not a legal move!" << endl;
+        if ((cardToMove->getNumber() != (topCard->getNumber()-1)) || (cardToMove->getColour() == topCard->getColour())){
+            cout << warning << endl;
             return;
         }
     }
 
     receiver.addCard(&(deck.dealCard()));
+    deck.getPreviousCard();
+}
+
+void fromDeckToFoundation(Pile &receiver){
+    Card *cardToMove = &deck.getCurrentCard();
+    Card *topCard;
+
+    if (receiver.getSize() == 0){
+        if (cardToMove->getNumber() != 1){
+            cout << "entre" << endl;
+            cout << warning << endl;
+            return;
+        }
+    }
+    else{
+        topCard = &receiver.getLastCard();
+
+        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || (cardToMove->getSuit() != topCard->getSuit())){
+            cout << warning << endl;
+            return;
+        }
+    }
+
+    receiver.addCard(&(deck.dealCard()));
+    deck.getPreviousCard();
 }
