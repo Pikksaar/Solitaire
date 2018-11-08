@@ -17,7 +17,7 @@ Deck::Deck(){
 
     deck = new Card[CARDS_IN_DECK];
 
-    for(int cont = 0; cont < CARDS_IN_DECK; cont++){ // Populate deck
+    for(int cont = 0; cont < CARDS_IN_DECK; cont++){
         deck[cont].setFace(faces[cont % 13]);
         deck[cont].setNumber(numbers[cont % 13]);
         deck[cont].setSuit(suits[cont / 13]);
