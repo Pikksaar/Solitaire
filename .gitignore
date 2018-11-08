@@ -1,3 +1,10 @@
+#Codeblocks files
+*.depend
+*.layout
+
+#Project Unused Files
+images/
+
 # Prerequisites
 *.d
 
