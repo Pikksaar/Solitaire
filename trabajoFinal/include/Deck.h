@@ -8,19 +8,20 @@ class Deck{
         Deck();
 
         Card& dealCard();
-        std::string getNextCard();
         Card& getCurrentCard();
         void getPreviousCard();
+        void getNextCard();
 
         void shuffleDeck();
         void printDeck();
 
+        int notDealt = 0;
+        Card *deck;
 
     private:
-        Card *deck;
         bool onboard;
         int usedCards;
-        int notDealt = 0;
+        Card blan;
 };
 
 #endif // DECK_H

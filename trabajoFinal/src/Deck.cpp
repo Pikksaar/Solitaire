@@ -47,32 +47,25 @@ void Deck::printDeck(){
 }
 
 void Deck::getPreviousCard(){
-    int cont = 0;
-    while (deck[cont].getOnboard() == true)
-        cont++;
+    notDealt--;
+    while (deck[notDealt].getOnboard() == true && notDealt >= 28)
+        notDealt--;
 
-    if (notDealt == cont)
+    if (notDealt < 28)
         notDealt = 52;
-    else
-        notDealt -= 2;
 }
 
 Card& Deck::getCurrentCard(){
     return deck[notDealt];
 }
 
-std::string Deck::getNextCard(){
-    if (notDealt == 52){
+void Deck::getNextCard(){
+    notDealt++;
+    if (notDealt > 52){
         notDealt = 28;
-        return " ";
     }
-    else{
-        while (deck[notDealt].getOnboard() == true && notDealt < 52)
-            notDealt++;
-    }
-
-    if (notDealt == 52) {notDealt = 28; return " ";}
-    return deck[notDealt++].printCard();
+    while (deck[notDealt].getOnboard() == true && notDealt < 52)
+        notDealt++;
 }
 
 Card& Deck::dealCard(){

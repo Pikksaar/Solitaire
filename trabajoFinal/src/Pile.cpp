@@ -16,7 +16,7 @@ void Pile::removeCard(int n){
 }
 
 void Pile::revealLast(){
-    (*(pile[pileSize-1])).revealCard();
+    (*(pile[pileSize-1])).setRevealed(true);
 }
 
 int Pile::getSize(){

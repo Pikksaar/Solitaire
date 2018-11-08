@@ -10,7 +10,14 @@ Game::Game(){
 }
 
 void Game::drawBoard(Deck deck, Pile tableaus[], Pile foundations[]){
-    std::cout << std::setw(19) << "Deck: " << std::setw(19) << deck.getNextCard() << "\n\n";
+    int notDealt = deck.notDealt;
+
+    std::string p;
+    if (deck.getCurrentCard().printCard() == "?????")
+        p = " ";
+    else p = deck.getCurrentCard().printCard();
+
+    std::cout << std::setw(19) << "Deck: " << std::setw(19) << p << std::setw(19) << deck.notDealt << deck.deck[notDealt].printCard() << "\n\n";
 
     for (int i = 0; i < 13; i++){
         for (int j = 0; j < TABLEAUS; j++){
@@ -27,7 +34,8 @@ void Game::drawBoard(Deck deck, Pile tableaus[], Pile foundations[]){
         std::cout << std::endl;
     }
 
-    std::cout << std::setw(19) << "1. HEARTS" << std::setw(19) << "2. SPADES" << std::setw(19) << "3. DIAMONDS" << std::setw(19) << "4. CLUBS" << std::endl;
+    std::cout << std::setw(19) << "1. FOUNDATION" << std::setw(19) << "2. FOUNDATION"
+        << std::setw(19) << "3. FOUNDATION" << std::setw(19) << "4. FOUNDATION" << std::endl;
 
     for (int i = 0; i < 13; i++){
         for (int j = 0; j < FOUNDATIONS; j++){

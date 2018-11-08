@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1541300835 source:c:\users\asus\documents\basic programming\trabajofinal\src\card.cpp
+1541645397 source:c:\users\asus\documents\basic programming\trabajofinal\src\card.cpp
 	"Card.h"
 	<iostream>
 	<iomanip>
 	<string.h>
 
-1541300835 c:\users\asus\documents\basic programming\trabajofinal\include\card.h
+1541645160 c:\users\asus\documents\basic programming\trabajofinal\include\card.h
 	<iostream>
 
-1541596428 source:c:\users\asus\documents\basic programming\trabajofinal\main.cpp
+1541645287 source:c:\users\asus\documents\basic programming\trabajofinal\main.cpp
 	<iostream>
 	<iomanip>
 	<string.h>
@@ -19,14 +19,14 @@
 	"Pile.h"
 	"Game.h"
 
-1541594638 source:c:\users\asus\documents\basic programming\trabajofinal\src\deck.cpp
+1541646288 source:c:\users\asus\documents\basic programming\trabajofinal\src\deck.cpp
 	"Deck.h"
 	<vector>
 	<ctime>
 	<iostream>
 	<iomanip>
 
-1541306315 c:\users\asus\documents\basic programming\trabajofinal\include\deck.h
+1541646509 c:\users\asus\documents\basic programming\trabajofinal\include\deck.h
 	"Card.h"
 	<iostream>
 
@@ -848,16 +848,16 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1541562326 source:c:\users\asus\documents\basic programming\trabajofinal\src\game.cpp
+1541645179 source:c:\users\asus\documents\basic programming\trabajofinal\src\game.cpp
 	"Game.h"
 	<iostream>
 	<iomanip>
 
-1541284897 c:\users\asus\documents\basic programming\trabajofinal\include\game.h
+1541645179 c:\users\asus\documents\basic programming\trabajofinal\include\game.h
 	"Pile.h"
 	"Deck.h"
 
-1541300138 source:c:\users\asus\documents\basic programming\trabajofinal\src\pile.cpp
+1541645042 source:c:\users\asus\documents\basic programming\trabajofinal\src\pile.cpp
 	"Pile.h"
 	<iomanip>
 

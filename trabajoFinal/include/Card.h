@@ -22,8 +22,6 @@ class Card{
         void setNumber(const int);
         void setColour(const std::string);
 
-        void revealCard();
-
         std::string printCard();
 
     protected:

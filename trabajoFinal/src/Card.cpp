@@ -63,10 +63,6 @@ void Card::setSprite(const std::string &filename){
     sf::Sprite cSprite(cTexture);
 }
 */
-void Card::revealCard(){
-    revealed = true;
-}
-
 
 std::string Card::printCard(){
     if (revealed)

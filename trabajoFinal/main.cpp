@@ -251,7 +251,6 @@ void fromDeckToFoundation(Pile &receiver){
 
     if (receiver.getSize() == 0){
         if (cardToMove->getNumber() != 1){
-            cout << "entre" << endl;
             cout << warning << endl;
             return;
         }
