@@ -13,6 +13,8 @@ class Card{
         bool getRevealed();
         int getNumber();
 
+        //void setSprite(const std::string &filename);
+
         void setSuit(const std::string);
         void setFace(const std::string);
         void setOnboard(const bool);
@@ -31,6 +33,8 @@ class Card{
         bool revealed, onboard;
         int number;
 
+        //sf::Texture cTexture;
+        //sf::Sprite cSprite;
 };
 
 #endif // CARD_H
