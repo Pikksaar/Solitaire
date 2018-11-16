@@ -1,4 +1,4 @@
-#include "C:/Users/ASUS/Documents/Basic Programming/trabajoFinal2/include/Player.h"
+#include "Player.h"
 
 using namespace std;
 

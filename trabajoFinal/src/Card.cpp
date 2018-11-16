@@ -57,12 +57,6 @@ void Card::setNumber(const int n){
 void Card::setColour(const std::string s){
     colour = s;
 }
-/*
-void Card::setSprite(const std::string &filename){
-    cTexture.loadFromFile(filename);
-    sf::Sprite cSprite(cTexture);
-}
-*/
 
 std::string Card::printCard(){
     if (revealed)
