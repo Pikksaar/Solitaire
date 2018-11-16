@@ -40,12 +40,14 @@
 		<Unit filename="include/Card.h" />
 		<Unit filename="include/Deck.h" />
 		<Unit filename="include/Game.h" />
+		<Unit filename="include/KlondikeOne.h" />
 		<Unit filename="include/Pile.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Card.cpp" />
 		<Unit filename="src/Deck.cpp" />
 		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/KlondikeOne.cpp" />
 		<Unit filename="src/Pile.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Extensions>

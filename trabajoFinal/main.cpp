@@ -8,7 +8,9 @@
 #include "Card.h"
 #include "Deck.h"
 #include "Pile.h"
-#include "Game.h"
+
+#include "KlondikeOne.h"
+
 #include "Player.h"
 
 #define TABLEAUS 7
@@ -16,7 +18,7 @@
 using namespace std;
 
 Player player;
-Game game;
+KlondikeOne game;
 Deck deck;
 
 Pile foundations[4];
