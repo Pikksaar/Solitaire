@@ -1,7 +1,7 @@
-#include "KlondikeOne.h"
+#include "KlondikeThree.h"
 #include <iomanip>
 
-void KlondikeOne::drawBoard(Deck deck, Pile tableaus[], Pile foundations[]){
+void KlondikeThree::drawBoard(Deck deck, Pile tableaus[], Pile foundations[]){
     std::string p;
     if (deck.getCurrentCard().printCard() == "?????")
         p = " ";

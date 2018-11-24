@@ -19,8 +19,3 @@ bool Game::gameWon(Pile &f1, Pile &f2, Pile &f3, Pile &f4){ // f = fundation
         return true;
     return false;
 }
-
-Game::~Game()
-{
-    //dtor
-}

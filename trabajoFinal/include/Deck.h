@@ -15,13 +15,12 @@ class Deck{
         void shuffleDeck();
         void printDeck();
 
-        int notDealt = 0;
-        Card *deck;
 
     private:
         bool onboard;
         int usedCards;
-        Card blan;
+        int notDealt = 0;
+        Card *deck;
 };
 
 #endif // DECK_H

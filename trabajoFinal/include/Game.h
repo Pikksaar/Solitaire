@@ -5,15 +5,12 @@
 
 class Game{
     public:
-        virtual void drawBoard(Deck deck, Pile tableaus[], Pile foundations[]) = 0;
+        static const int TABLEAUS = 7;
+        static const int FOUNDATIONS = 4;
+
+        virtual void drawBoard(Deck, Pile*, Pile*) = 0;
         void askAction();
-        bool gameWon(Pile &f1, Pile &f2, Pile &f3, Pile &f4);
-
-        ~Game();
-
-    protected:
-
-    private:
+        bool gameWon(Pile&, Pile&, Pile&, Pile&);
 };
 
 #endif // GAME_H

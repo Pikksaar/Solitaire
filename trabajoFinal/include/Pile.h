@@ -3,14 +3,12 @@
 #include "Card.h"
 #include <vector>
 
-class Pile
-{
+class Pile{
     public:
         Pile();
 
         void addCard(Card *d);
         void removeCard(int);
-        void moveCard(Pile &p);
         void revealLast();
 
         int getSize();
@@ -18,8 +16,6 @@ class Pile
         Card& getLastCard();
 
         void printPile();
-
-    protected:
 
     private:
         std::vector<Card*> pile;
