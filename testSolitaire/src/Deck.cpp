@@ -25,6 +25,10 @@ Deck::Deck(){
     }
 }
 
+Deck::~Deck(){
+    delete[] deck;
+}
+
 void Deck::shuffleDeck(){
     usedCards = 0;
 
@@ -40,35 +44,8 @@ void Deck::shuffleDeck(){
 
 void Deck::printDeck(){
     for(int i = 0; i < CARDS_IN_DECK; i++){
-        std::cout << std::setw(19) << deck[i];
+        std::cout << std::setw(19) << deck[i].printCard();
         if((i +1) % 4 == 0)
             std::cout << std::endl;
     }
-}
-
-void Deck::getPreviousCard(){
-    notDealt--;
-    while (deck[notDealt].getOnboard() == true && notDealt >= 28)
-        notDealt--;
-
-    if (notDealt < 28)
-        notDealt = 52;
-}
-
-Card& Deck::getCurrentCard(){
-    return deck[notDealt];
-}
-
-void Deck::getNextCard(){
-    notDealt++;
-    if (notDealt > 52){
-        notDealt = 28;
-    }
-    while (deck[notDealt].getOnboard() == true && notDealt < 52)
-        notDealt++;
-}
-
-Card& Deck::dealCard(){
-    deck[notDealt].setOnboard(true);
-    return deck[notDealt++];
 }

@@ -15,7 +15,6 @@ class Deck{
         void shuffleDeck();
         void printDeck();
 
-
     private:
         bool onboard;
         int usedCards;
