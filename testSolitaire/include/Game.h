@@ -5,6 +5,8 @@
 
 class Game{
     public:
+        virtual ~Game();
+
         static int turn;
 
         static const int TABLEAUS = 7;

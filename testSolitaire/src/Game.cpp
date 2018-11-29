@@ -14,6 +14,8 @@ void Game::askAction(){
     std::cout << "To move a card from a tableau to a foundation, press 5." << std::endl;
 }
 
+Game::~Game(){}
+
 bool Game::gameWon(Pile &f1, Pile &f2, Pile &f3, Pile &f4){ // f = fundation
     if((f1.getSize() == 13) && (f2.getSize() == 13) && (f3.getSize() == 13) & (f4.getSize() == 13))
         return true;

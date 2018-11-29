@@ -8,7 +8,7 @@
 class Deck{
     public:
         Deck();
-        ~Deck();
+        virtual ~Deck();
 
         void shuffleDeck();
         void printDeck();

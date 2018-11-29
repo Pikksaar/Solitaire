@@ -106,6 +106,7 @@ int main(){
 
     cout << "Congratulations! You've won the game!" << endl;
     delete deck;
+    delete game;
 
     return 0;
 }
