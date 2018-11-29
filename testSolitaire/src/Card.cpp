@@ -69,5 +69,5 @@ bool operator<(Card& obj1, Card& obj2){
 }
 
 bool operator>(Card& obj1, Card& obj2){
-    return ((obj1.getNumber() == obj2.getNumber() + 1) && (obj1.getColour() == obj2.getColour()));
+    return ((obj1.getNumber() == obj2.getNumber() + 1) && (obj1.getSuit() == obj2.getSuit()));
 }
