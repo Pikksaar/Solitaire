@@ -29,12 +29,13 @@ Game *game;
 Pile foundations[4];
 Pile tableaus[7];
 
-void chooseGame(Deck*, Game*);
 void fillTableaus(Pile[]);
+void chooseGame();
+void promptChoices(int, int&, int&, int&);
 
 int main(){
     // Choose gamemode
-    chooseGame(deck, game);
+    chooseGame();
 
     // Start the table
     deck->shuffleDeck();
@@ -47,7 +48,7 @@ int main(){
 
         game->askAction();
 
-        int fromPile, toPile, cards;
+        int fromPile=0, toPile=0, cards=0;
         bool illegalMove;
         do{
             illegalMove = false;
@@ -65,15 +66,15 @@ int main(){
                     deck->getNextCard();
                     break;
                 case 2:
-                    cin >> toPile;
+                    promptChoices(1, fromPile, toPile, cards);
                     player.fromDeckToTableau(deck, tableaus[toPile-1]);
                     break;
                 case 3:
-                    cin >> toPile;
+                    promptChoices(1, fromPile, toPile, cards);
                     player.fromDeckToFoundation(deck, foundations[toPile-1]);
                     break;
                 case 4:
-                    cin >> fromPile >> toPile >> cards;
+                    promptChoices(3, fromPile, toPile, cards);
 
                     if (cards > tableaus[fromPile-1].getSize()){
                         illegalMove = true;
@@ -83,7 +84,7 @@ int main(){
                     player.moveCards(tableaus[fromPile-1], tableaus[toPile-1], cards);
                     break;
                 case 5:
-                    cin >> fromPile >> toPile;
+                    promptChoices(2, fromPile, toPile, cards);
 
                     if (tableaus[fromPile-1].getSize() == 0){
                         illegalMove = true;
@@ -105,12 +106,28 @@ int main(){
 
     cout << "Congratulations! You've won the game!" << endl;
     delete deck;
-    delete game;
 
     return 0;
 }
 
-void chooseGame(Deck* d, Game* g){
+void promptChoices(int choice, int &fp, int &tp, int &cards){
+    switch(choice){
+        case 1:
+            cout << "Which is your target pile?: "; cin >> tp;
+            break;
+        case 2:
+            cout << "From which pile will you take a card?: "; cin >> fp;
+            cout << "Which is your target pile?: "; cin >> tp;
+            break;
+        case 3:
+            cout << "From which pile will you take a card?: "; cin >> fp;
+            cout << "Which is your target pile?: "; cin >> tp;
+            cout << "How many cards do you want to move?: "; cin >> cards;
+            break;
+    }
+}
+
+void chooseGame(){
     // Game Choice
     cout << "Choose a gamemode: " << endl;
     cout << "\t 1. Klondike (Draw 1)" << endl;
@@ -141,7 +158,7 @@ void chooseGame(Deck* d, Game* g){
         }
     }
 
-    cout << "\n\n\n\n\n\n\n\n\n\n" << "The game has started!" << endl;
+    cout << "\n\n\n\n\n\n\n\n\n\n" << "The game has started! \n" << endl;
 }
 
 void fillTableaus(Pile tableaus[]){

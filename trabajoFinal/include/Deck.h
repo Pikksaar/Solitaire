@@ -1,25 +1,29 @@
 #ifndef DECK_H
 #define DECK_H
+
 #include "Card.h"
+
 #include <iostream>
 
 class Deck{
     public:
         Deck();
-
-        Card& dealCard();
-        Card& getCurrentCard();
-        void getPreviousCard();
-        void getNextCard();
+        ~Deck();
 
         void shuffleDeck();
         void printDeck();
+        void setNotDealt(int);
+        int getNotDealt() const;
+        Card& getCard(int) const;
 
-    private:
-        bool onboard;
-        int usedCards;
-        int notDealt = 0;
+        virtual Card& dealCard() = 0;
+        virtual Card& getCurrentCard() = 0;
+        virtual void getPreviousCard() = 0;
+        virtual void getNextCard() = 0;
+
+    protected:
         Card *deck;
+        int notDealt = 0, usedCards;
 };
 
 #endif // DECK_H

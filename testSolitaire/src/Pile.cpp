@@ -23,12 +23,6 @@ int Pile::getSize(){
     return pileSize;
 }
 
-void Pile::printPile(){
-    for(Card *d : pile)
-        std::cout << std::setw(17) << (*d).printCard() << " ";
-    std::cout << std::endl;
-}
-
 Card& Pile::getCard(int indx){
     return *pile[indx];
 }

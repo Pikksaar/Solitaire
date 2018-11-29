@@ -12,7 +12,7 @@ Deck::Deck(){
     std::string faces[] = {"Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight",
             "Nine", "Ten", "Jack", "Queen", "King"};
     std::string suits[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
-    std::string colours[] = {"Black", "Red"};
+    std::string colours[] = {"Red", "Black"};
     int numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 
     deck = new Card[CARDS_IN_DECK];
@@ -23,6 +23,10 @@ Deck::Deck(){
         deck[cont].setSuit(suits[cont / 13]);
         deck[cont].setColour(colours[cont / 26]);
     }
+}
+
+Deck::~Deck(){
+    delete[] deck;
 }
 
 void Deck::shuffleDeck(){
@@ -40,35 +44,20 @@ void Deck::shuffleDeck(){
 
 void Deck::printDeck(){
     for(int i = 0; i < CARDS_IN_DECK; i++){
-        std::cout << std::setw(19) << deck[i];
+        std::cout << std::setw(19) << deck[i].printCard();
         if((i +1) % 4 == 0)
             std::cout << std::endl;
     }
 }
 
-void Deck::getPreviousCard(){
-    notDealt--;
-    while (deck[notDealt].getOnboard() == true && notDealt >= 28)
-        notDealt--;
-
-    if (notDealt < 28)
-        notDealt = 52;
+void Deck::setNotDealt(int n){
+    notDealt = n;
 }
 
-Card& Deck::getCurrentCard(){
-    return deck[notDealt];
+int Deck::getNotDealt() const{
+    return notDealt;
 }
 
-void Deck::getNextCard(){
-    notDealt++;
-    if (notDealt > 52){
-        notDealt = 28;
-    }
-    while (deck[notDealt].getOnboard() == true && notDealt < 52)
-        notDealt++;
-}
-
-Card& Deck::dealCard(){
-    deck[notDealt].setOnboard(true);
-    return deck[notDealt++];
+Card& Deck::getCard(int i) const{
+    return deck[i];
 }

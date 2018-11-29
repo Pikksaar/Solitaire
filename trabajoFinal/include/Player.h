@@ -12,8 +12,8 @@ class Player{
     public:
         void moveCards(Pile&, Pile&, int);
         void moveCards(Pile&, Pile&);
-        void fromDeckToTableau(Deck&, Pile&);
-        void fromDeckToFoundation(Deck&, Pile&);
+        void fromDeckToTableau(Deck*, Pile&);
+        void fromDeckToFoundation(Deck*, Pile&);
 };
 
 #endif // PLAYER_H

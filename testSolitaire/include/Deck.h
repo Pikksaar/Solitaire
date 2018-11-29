@@ -12,19 +12,18 @@ class Deck{
 
         void shuffleDeck();
         void printDeck();
+        void setNotDealt(int);
+        int getNotDealt() const;
+        Card& getCard(int) const;
 
         virtual Card& dealCard() = 0;
         virtual Card& getCurrentCard() = 0;
         virtual void getPreviousCard() = 0;
         virtual void getNextCard() = 0;
 
-        int notDealt = 0;
     protected:
         Card *deck;
-
-        bool onboard;
-
-        int usedCards;
+        int notDealt = 0, usedCards;
 };
 
 #endif // DECK_H

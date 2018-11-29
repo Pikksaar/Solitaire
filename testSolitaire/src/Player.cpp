@@ -21,7 +21,7 @@ void Player::moveCards(Pile &dealer, Pile &receiver, int cards){
     else{
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() - 1)) || ((cardToMove->getColour() == topCard->getColour()))){
+        if (!(*cardToMove < *topCard)){
             cout << warning << endl;
             return;
         }
@@ -52,7 +52,7 @@ void Player::moveCards(Pile &dealer, Pile &receiver){
     if (receiver.getSize() > 0){
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || ((cardToMove->getColour() != topCard->getColour()))){
+        if (!(*cardToMove > *topCard)){
             cout << warning << endl;
             return;
         }
@@ -78,7 +78,7 @@ void Player::fromDeckToTableau(Deck *deck, Pile &receiver){
     else{
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() - 1)) || (cardToMove->getColour() == topCard->getColour())){
+        if (!(*cardToMove < *topCard)){
             cout << warning << endl;
             return;
         }
@@ -101,7 +101,7 @@ void Player::fromDeckToFoundation(Deck *deck, Pile &receiver){
     else{
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || (cardToMove->getSuit() != topCard->getSuit())){
+        if (!(*cardToMove > *topCard)){
             cout << warning << endl;
             return;
         }

@@ -15,8 +15,6 @@ class Pile{
         Card& getCard(int);
         Card& getLastCard();
 
-        void printPile();
-
     private:
         std::vector<Card*> pile;
         int pileSize;

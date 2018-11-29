@@ -2,19 +2,60 @@
 #include <iomanip>
 
 void KlondikeThree::drawBoard(Deck *deck, Pile tableaus[], Pile foundations[]){
+
+    int lim;
+    if (turn == 0){
+        lim = 2;
+        *lastNotDealt = deck->getNotDealt();
+    }
+    else if (deck->getNotDealt() < 28){
+        if (deck->getNotDealt() == 26)
+            lim = 0;
+        else if (deck->getNotDealt() == 27)
+            lim = 1;
+
+        deck->setNotDealt(28);
+    }
+    else{
+        int cont = 0;
+        for (int i = deck->getNotDealt(); i < 52; i++){
+            if (deck->getCard(i).getOnboard() == false)
+                cont++;
+            if (cont > 2) break;
+        }
+
+        if (cont == 1)
+            lim = 0;
+        else if (cont == 2)
+            lim = 1;
+        else
+            lim = 2;
+    }
+
     std::string p;
     if (deck->getCurrentCard().printCard() == "?????")
         p = " ";
-    else p = deck->getCurrentCard().printCard();
+    else{
+        if ((deck->getNotDealt()+1) >= 52)
+            deck->setNotDealt(deck->getNotDealt()-2);
+        else if ((deck->getNotDealt()+2) >= 52)
+            deck->setNotDealt(deck->getNotDealt()-1);
 
-    std::cout << std::setw(19) << "Deck: " << std::setw(19) << p << std::setw(19) << deck->notDealt << std::endl;
-    if (deck->notDealt != 52){
-        for (int i = 0; i < 2; i++){
+        if (*lastNotDealt == deck->getNotDealt()-2) deck->setNotDealt(deck->getNotDealt()-2);
+        p = deck->getCurrentCard().printCard();
+    }
+
+    std::cout << std::setw(19) << "Deck: ";
+    std::cout << std::setw(19) << p << std::setw(19) << deck->getNotDealt() << std::endl;
+
+    if (p != " "){
+        for (int i = 0; i < lim; i++){
             deck->getNextCard();
             p = deck->getCurrentCard().printCard();
-            std::cout << std::setw(38) << p << std::setw(19) << deck->notDealt << std::endl;
+            std::cout << std::setw(38) << p << std::setw(19) << deck->getNotDealt() << std::endl;
         }
     }
+
     std::cout << "\n\n";
 
     for (int i = 0; i < 13; i++){
@@ -49,4 +90,6 @@ void KlondikeThree::drawBoard(Deck *deck, Pile tableaus[], Pile foundations[]){
         }
         std::cout << std::endl;
     }
+
+    turn++;
 }

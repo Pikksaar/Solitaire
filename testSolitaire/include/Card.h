@@ -5,6 +5,9 @@
 
 class Card{
     public:
+        friend bool operator<(Card& obj1, Card& obj2);
+        friend bool operator>(Card& obj1, Card& obj2);
+
         Card();
 
         std::string getSuit();

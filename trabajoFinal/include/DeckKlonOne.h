@@ -1,15 +1,14 @@
-#ifndef DECKKLONTHREE_H
-#define DECKKLONTHREE_H
+#ifndef DECKKLONONE_H
+#define DECKKLONONE_H
 
 #include "Deck.h"
 
-class DeckKlonThree : public Deck{
+class DeckKlonOne : public Deck{
     public:
         Card& dealCard();
-        Card& dealCardToTable();
         Card& getCurrentCard();
         void getPreviousCard();
         void getNextCard();
 };
 
-#endif // DECKKLONTHREE_H
+#endif // DECKKLONONE_H

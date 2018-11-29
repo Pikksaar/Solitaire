@@ -5,7 +5,7 @@
 
 class KlondikeOne : public Game{
     public:
-        void drawBoard(Deck, Pile*, Pile*);
+        void drawBoard(Deck*, Pile*, Pile*);
 };
 
 #endif // KLONDIKEONE_H

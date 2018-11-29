@@ -21,7 +21,7 @@ void Player::moveCards(Pile &dealer, Pile &receiver, int cards){
     else{
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() - 1)) || ((cardToMove->getColour() == topCard->getColour()))){
+        if (!(*cardToMove < *topCard)){
             cout << warning << endl;
             return;
         }
@@ -52,7 +52,7 @@ void Player::moveCards(Pile &dealer, Pile &receiver){
     if (receiver.getSize() > 0){
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || ((cardToMove->getColour() != topCard->getColour()))){
+        if (!(*cardToMove > *topCard)){
             cout << warning << endl;
             return;
         }
@@ -65,8 +65,8 @@ void Player::moveCards(Pile &dealer, Pile &receiver){
         dealer.revealLast();
 }
 
-void Player::fromDeckToTableau(Deck &deck, Pile &receiver){
-    Card *cardToMove = &deck.getCurrentCard();
+void Player::fromDeckToTableau(Deck *deck, Pile &receiver){
+    Card *cardToMove = &deck->getCurrentCard();
     Card *topCard;
 
     if (receiver.getSize() == 0){
@@ -78,18 +78,18 @@ void Player::fromDeckToTableau(Deck &deck, Pile &receiver){
     else{
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() - 1)) || (cardToMove->getColour() == topCard->getColour())){
+        if (!(*cardToMove < *topCard)){
             cout << warning << endl;
             return;
         }
     }
 
-    receiver.addCard(&(deck.dealCard()));
-    deck.getPreviousCard();
+    receiver.addCard(&(deck->dealCard()));
+    deck->getPreviousCard();
 }
 
-void Player::fromDeckToFoundation(Deck &deck, Pile &receiver){
-    Card *cardToMove = &deck.getCurrentCard();
+void Player::fromDeckToFoundation(Deck *deck, Pile &receiver){
+    Card *cardToMove = &deck->getCurrentCard();
     Card *topCard;
 
     if (receiver.getSize() == 0){
@@ -101,12 +101,12 @@ void Player::fromDeckToFoundation(Deck &deck, Pile &receiver){
     else{
         topCard = &receiver.getLastCard();
 
-        if ((cardToMove->getNumber() != (topCard->getNumber() + 1)) || (cardToMove->getSuit() != topCard->getSuit())){
+        if (!(*cardToMove > *topCard)){
             cout << warning << endl;
             return;
         }
     }
 
-    receiver.addCard(&(deck.dealCard()));
-    deck.getPreviousCard();
+    receiver.addCard(&(deck->dealCard()));
+    deck->getPreviousCard();
 }

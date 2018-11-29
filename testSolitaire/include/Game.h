@@ -5,6 +5,8 @@
 
 class Game{
     public:
+        static int turn;
+
         static const int TABLEAUS = 7;
         static const int FOUNDATIONS = 4;
 

@@ -63,3 +63,11 @@ std::string Card::printCard(){
         return face + " of " + suit;
     return "?????";
 }
+
+bool operator<(Card& obj1, Card& obj2){
+    return ((obj1.getNumber() == obj2.getNumber() - 1) && (obj1.getColour() != obj2.getColour()));
+}
+
+bool operator>(Card& obj1, Card& obj2){
+    return ((obj1.getNumber() == obj2.getNumber() + 1) && (obj1.getColour() == obj2.getColour()));
+}

@@ -12,7 +12,7 @@ Deck::Deck(){
     std::string faces[] = {"Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight",
             "Nine", "Ten", "Jack", "Queen", "King"};
     std::string suits[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
-    std::string colours[] = {"Black", "Red"};
+    std::string colours[] = {"Red", "Black"};
     int numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 
     deck = new Card[CARDS_IN_DECK];
@@ -48,4 +48,16 @@ void Deck::printDeck(){
         if((i +1) % 4 == 0)
             std::cout << std::endl;
     }
+}
+
+void Deck::setNotDealt(int n){
+    notDealt = n;
+}
+
+int Deck::getNotDealt() const{
+    return notDealt;
+}
+
+Card& Deck::getCard(int i) const{
+    return deck[i];
 }
