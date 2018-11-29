@@ -1,6 +1,6 @@
 #include "Deck.h"
 #include <vector>
-#include <ctime>
+#include <cstdlib>
 #include <iostream>
 #include <iomanip>
 
