@@ -1,6 +1,8 @@
 #include "DeckKlonThree.h"
 #include "iostream"
 
+DeckKlonThree* DeckKlonThree::instance = nullptr;
+
 Card& DeckKlonThree::dealCard(){
     if (usedCards >= 28) return dealCardToTable();
 

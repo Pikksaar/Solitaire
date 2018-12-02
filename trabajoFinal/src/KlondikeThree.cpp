@@ -1,6 +1,8 @@
 #include "KlondikeThree.h"
 #include <iomanip>
 
+KlondikeThree* KlondikeThree::instance = nullptr;
+
 void KlondikeThree::drawBoard(Deck *deck, Pile tableaus[], Pile foundations[]){
 
     int lim;

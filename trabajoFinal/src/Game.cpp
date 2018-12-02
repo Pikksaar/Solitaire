@@ -6,6 +6,8 @@
 #define TABLEAUS 7
 #define FOUNDATIONS 4
 
+Game::~Game(){}
+
 void Game::askAction(){
     std::cout << "To see the next card in the deck, press 1." << std::endl;
     std::cout << "To move a card from the deck to a tableau, press 2." << std::endl;

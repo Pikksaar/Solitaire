@@ -20,6 +20,9 @@
 #define TABLEAUS 7
 
 using namespace std;
+/*
+KlondikeOne* KlondikeOne::instance = nullptr;
+KlondikeThree* KlondikeThree::instance = nullptr;*/
 
 Player player;
 
@@ -106,6 +109,7 @@ int main(){
 
     cout << "Congratulations! You've won the game!" << endl;
     delete deck;
+    delete game;
 
     return 0;
 }
@@ -145,12 +149,12 @@ void chooseGame(){
 
         switch(gameChoice){
             case 1:
-                deck = new DeckKlonOne;
-                game = new KlondikeOne;
+                deck = DeckKlonOne::getInstance();
+                game = KlondikeOne::getInstance();
                 break;
             case 2:
-                deck = new DeckKlonThree;
-                game = new KlondikeThree;
+                deck = DeckKlonThree::getInstance();
+                game = KlondikeThree::getInstance();
                 break;
             default:
                 cout << "Choose a valid gamemode!: ";

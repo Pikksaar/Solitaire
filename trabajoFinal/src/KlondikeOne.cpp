@@ -1,6 +1,8 @@
 #include "KlondikeOne.h"
 #include <iomanip>
 
+KlondikeOne* KlondikeOne::instance = nullptr;
+
 void KlondikeOne::drawBoard(Deck *deck, Pile tableaus[], Pile foundations[]){
     std::string p;
     if (deck->getCurrentCard().printCard() == "?????")

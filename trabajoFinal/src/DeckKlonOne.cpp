@@ -1,5 +1,7 @@
 #include "DeckKlonOne.h"
 
+DeckKlonOne* DeckKlonOne::instance = nullptr;
+
 Card& DeckKlonOne::dealCard(){
     deck[notDealt].setOnboard(true);
     return deck[notDealt++];
