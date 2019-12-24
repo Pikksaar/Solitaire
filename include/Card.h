@@ -2,7 +2,6 @@
 #define CARD_H
 #include <iostream>
 
-
 class Card{
     public:
         friend bool operator<(Card& obj1, Card& obj2);
