@@ -7,13 +7,13 @@
 #include <iostream>
 
 class Player{
-    private:
-        std::string warning = "That's not a legal move!";
-    public:
-        void moveCards(Pile&, Pile&, int);
-        void moveCards(Pile&, Pile&);
-        void fromDeckToTableau(Deck*, Pile&);
-        void fromDeckToFoundation(Deck*, Pile&);
+  private:
+    std::string warning = "That's not a legal move!";
+  public:
+    void moveCards(Pile&, Pile&, int);
+    void moveCards(Pile&, Pile&);
+    void fromDeckToTableau(Deck*, Pile&);
+    void fromDeckToFoundation(Deck*, Pile&);
 };
 
 #endif // PLAYER_H

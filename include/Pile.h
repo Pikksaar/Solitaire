@@ -4,20 +4,20 @@
 #include <vector>
 
 class Pile{
-    public:
-        Pile();
+  public:
+    Pile();
 
-        void addCard(Card *d);
-        void removeCard(int);
-        void revealLast();
+    void addCard(Card *d);
+    void removeCard(int);
+    void revealLast();
 
-        int getSize();
-        Card& getCard(int);
-        Card& getLastCard();
+    int getSize();
+    Card& getCard(int);
+    Card& getLastCard();
 
-    private:
-        std::vector<Card*> pile;
-        int pileSize;
+  private:
+    std::vector<Card*> pile;
+    int pileSize;
 };
 
 #endif // PILE_H
