@@ -37,3 +37,6 @@ images/
 *.exe
 *.out
 *.app
+
+# VS Code config
+.vscode
